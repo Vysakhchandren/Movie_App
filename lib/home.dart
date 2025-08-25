@@ -33,9 +33,10 @@ class _HomeState extends State<Home> {
             title: Text(movie.title),
             subtitle: Text('sub'),
             trailing: Icon(Icons.arrow_circle_right),
-            leading: CircleAvatar(
-              child: Text(movie.title[0]),
+            leading: CircleAvatar(foregroundImage: NetworkImage(movie.images[0]),
             ),
+              // child: Image.network(fit: BoxFit.cover,movie.images[0]),
+            // ),
             
           );
           //   Card(
