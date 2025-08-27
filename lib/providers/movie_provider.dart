@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:movie_apps/models/movie.dart';
 import 'package:movie_apps/utils/movie_parser.dart';
@@ -23,7 +25,7 @@ class MovieProvider extends ChangeNotifier {
       _movieList = movies;
       notifyListeners();
     } catch (e) {
-      print("Error loading movies: $e");
+      log("Error loading movies: $e");
     }
   }
 

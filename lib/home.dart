@@ -11,7 +11,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   @override
   void initState() {
     Provider.of<MovieProvider>(context, listen: false).loadMovies(context);
@@ -23,29 +22,54 @@ class _HomeState extends State<Home> {
     // MovieParser.parse("hello");
     final movies = Provider.of<MovieProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Movies'),
-      ),
+      appBar: AppBar(title: Text('Movies')),
       body: Center(
-        child: ListView.builder(itemCount: movies.movieList.length,itemBuilder: (context, index) {
-          final movie = movies.movieList[index];
-          return ListTile(
-            title: Text(movie.title),
-            subtitle: Text('sub'),
-            trailing: Icon(Icons.arrow_circle_right),
-            leading: CircleAvatar(foregroundImage: NetworkImage(movie.images[0]),
+        child: ListView.builder(
+          itemCount: movies.movieList.length,
+          itemBuilder: (context, index) {
+            final movie = movies.movieList[index];
+            return Card(
+              child: ExpansionTile(
+                title: Text(movie.title),
+                subtitle: Text('Director: ${movie.director}'),
+                leading: CircleAvatar(child: Text(movie.title[0])),
+                children: [
+                Container(
+                alignment: Alignment.center,
+                padding:
+                EdgeInsets.only(left: 75),
+                child: Column(
+                  children: [
+                    RichText(text: TextSpan(
+                      style: DefaultTextStyle
+                          .of(context)
+                          .style,
+                      children: [
+                        TextSpan(text: 'Released:',
+                            style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold)
+                        ),
+                        TextSpan(text: '${movie.released}')
+                      ],
+                    ),
+                    )
+                  ],
+                ),
+              ),
+                ],
             ),
-              // child: Image.network(fit: BoxFit.cover,movie.images[0]),
-            // ),
-            
-          );
-          //   Card(
-          //     child: Center(
-          //       child: Text(movies[index]),
-          //     )
-          // );
-          
-        },)
+            );
+            // return ListTile(
+            //   title: Text(movie.title),
+            //   subtitle: Text(movie.director),
+            //   trailing: Icon(Icons.arrow_circle_right),
+            //   leading: CircleAvatar(foregroundImage: NetworkImage(movie.images[0]),
+            //   ),
+            //     // child: Image.network(fit: BoxFit.cover,movie.images[0]),
+            //   // ),
+            //
+            // );
+          },
+        ),
       ),
     );
   }
