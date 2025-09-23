@@ -10,7 +10,7 @@ class MovieDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text( 'Movie Details'),
+        title: Text( 'Details of Movie'),
       ),
       body:Container(
         child: Column(
