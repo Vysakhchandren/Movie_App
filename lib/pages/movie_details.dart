@@ -14,7 +14,7 @@ class MovieDetails extends StatelessWidget {
       ),
       body:Container(
         child: Column(
-          children: [MovieCard(movie: movie),Text('Movie Posters',style: Theme.of(context).textTheme.headlineSmall,),
+          children: [MovieCard(movie: movie, isDetails: true,),Text('Movie Posters',style: Theme.of(context).textTheme.headlineSmall,),
             SizedBox(
               height: 200,
               width: double.infinity,
