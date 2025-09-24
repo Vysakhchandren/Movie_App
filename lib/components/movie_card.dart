@@ -14,41 +14,45 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: ExpansionTile(
-        title: Text(movie.title),
-        subtitle: Text('Director: ${movie.director}'),
-        leading: CircleAvatar(backgroundImage: NetworkImage(movie.images[0]),),
-        children: [
-          Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.only(left: 75),
-            child: Column(
-              children: [
-                RichText(
-                  text: TextSpan(
-                    style: DefaultTextStyle.of(context).style,
-                    children: [
-                      TextSpan(
-                        text: 'Released:',
-                        style: Theme.of(context).textTheme.labelLarge
-                            ?.copyWith(fontWeight: FontWeight.bold),
-                      ),
-                      TextSpan(text: '${movie.released}\n'),
-                      TextSpan(text: 'plot:',style: Theme.of(context).textTheme.labelLarge
-                          ?.copyWith(fontWeight: FontWeight.bold), ),
-                      TextSpan(text: '${movie.plot}'),
-                    ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 5,right: 5),
+      child: Card(color: Colors.amber.shade50
+        ,
+        child: ExpansionTile(
+          title: Text(movie.title),
+          subtitle: Text('Director: ${movie.director}'),
+          leading: CircleAvatar(backgroundImage: NetworkImage(movie.images[0]),),
+          children: [
+            Container(
+              alignment: Alignment.center,
+              padding: EdgeInsets.only(left: 75),
+              child: Column(
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      style: DefaultTextStyle.of(context).style,
+                      children: [
+                        TextSpan(
+                          text: 'Released:',
+                          style: Theme.of(context).textTheme.labelLarge
+                              ?.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(text: '${movie.released}\n'),
+                        TextSpan(text: 'plot:',style: Theme.of(context).textTheme.labelLarge
+                            ?.copyWith(fontWeight: FontWeight.bold), ),
+                        TextSpan(text: '${movie.plot}'),
+                      ],
+                    ),
                   ),
-                ),
-                isDetails ? const Text(" ") : TextButton(onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetails(movie: movie),));
+                  isDetails ? const Text(" ") : TextButton(onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDetails(movie: movie),));
 
-                }, child: Text('Read More'))
-              ],
+                  }, child: Text('Read More'))
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

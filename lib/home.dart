@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
     // MovieParser.parse("hello");
     final movies = Provider.of<MovieProvider>(context);
     return Scaffold(
-      appBar: AppBar(title: Text('Movies')),
+      appBar: AppBar(title: Text('Movies'),),
       body: Center(
         child: ListView.builder(
           itemCount: movies.movieList.length,
